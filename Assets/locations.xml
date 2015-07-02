@@ -1,0 +1,28 @@
+<LocationCollection>
+	<Locations>
+		<Location>
+			<Name>Library</Name>
+			<Key>x</Key>
+			<Gives>arch</Gives>
+			<Takes>plus</Takes>
+		</Location>
+		<Location>
+			<Name>PostOffice</Name>
+			<Key>circle</Key>
+			<Gives>triangle</Gives>
+			<Takes>equals</Takes>
+		</Location>
+		<Location>
+			<Name>FishMarket</Name>
+			<Key>equals</Key>
+			<Gives>line</Gives>
+			<Takes>x</Takes>
+		</Location>
+		<Location>
+			<Name>Museum</Name>
+			<Key>#</Key>
+			<Gives>square</Gives>
+			<Takes>circle</Takes>
+		</Location>
+	</Locations>
+</LocationCollection>
