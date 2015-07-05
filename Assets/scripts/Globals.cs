@@ -16,7 +16,10 @@ public class Globals : MonoBehaviour {
 
 	public GameObject winTextObj;
 
+	public Player player;
+
 	void Awake() {
+		player = Camera.main.GetComponent<Player> ();
 		hasSymbols = new List<string>();
 		needSymbols = new List<string>();
 

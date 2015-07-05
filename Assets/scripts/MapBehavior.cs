@@ -9,6 +9,8 @@ public class MapBehavior : MonoBehaviour {
 	public GameObject emptyTile;
 	private float tileSize = 25f;
 
+	public  GameObject[,] map;
+
 	// 1 PREFAB FOR EACH LOCATION
 	//public GameObject 
 
@@ -22,10 +24,11 @@ public class MapBehavior : MonoBehaviour {
 	private List<string> mapFileLines;
 	public GameObject locImgPrefab;
 	
-	public Image player;
+	public Player player;
 
 	void Awake () {
 		globals = Camera.main.GetComponent<Globals> ();
+		player = Camera.main.GetComponent<Player> ();
 		myRT = GetComponent<RectTransform> ();
 		grid = GetComponent<GridLayoutGroup> ();
 		ReadFromFile ();
@@ -36,6 +39,8 @@ public class MapBehavior : MonoBehaviour {
 		grid.cellSize = new Vector2 (tileSize, tileSize);
 		numCols = (int)(myRT.sizeDelta.x / tileSize);
 		numRows = (int)(myRT.sizeDelta.y / tileSize);
+
+		map = new GameObject[numRows,numCols];
 
 		DrawMap ();
 	}
@@ -54,6 +59,8 @@ public class MapBehavior : MonoBehaviour {
 
 				tile.tag = ""+CharInMap(r, c);
 
+				map[r,c] = tile;
+
 				if (tile.tag == "r") {
 					tile.GetComponent<Image>().color = Color.gray;
 				} else if (tile.tag == "H") {
@@ -66,7 +73,8 @@ public class MapBehavior : MonoBehaviour {
 
 					locImg.GetComponent<LocationImgBehavior>().isPlayerLoc = true;
 					locImg.GetComponent<LocationImgBehavior>().loc = null;
-					locImg.GetComponent<LocationImgBehavior>().onClick();
+					player.xLoc = c;
+					player.yLoc = r;
 				}
 				else if (tile.tag == "L") {
 					GameObject locImg = Instantiate(locImgPrefab) as GameObject;
