@@ -41,9 +41,8 @@ public class Player : MonoBehaviour {
 			if (map.CharInMap (yLoc, xLoc) == 'r') {
 				map.map[yLoc, xLoc].GetComponent<Image>().color = Color.gray;
 			} else {
-				foreach (Image childImg in map.map[yLoc, xLoc].GetComponentsInChildren<Image>()) {
-					childImg.color = Color.white;
-				}
+				LocationImgBehavior locImgBeh = map.map[yLoc, xLoc].GetComponentInChildren<LocationImgBehavior>();
+				locImgBeh.OnPlayerExit();
 			}
 
 			xLoc += deltaX;
@@ -52,6 +51,11 @@ public class Player : MonoBehaviour {
 			map.map[yLoc, xLoc].GetComponent<Image>().color = Color.red;
 			foreach (Image childImg in map.map[yLoc, xLoc].GetComponentsInChildren<Image>()) {
 				childImg.color = Color.red;
+			}
+
+			if (map.map[yLoc, xLoc].tag != "r") {
+				LocationImgBehavior locImgBeh = map.map[yLoc, xLoc].GetComponentInChildren<LocationImgBehavior>();
+				locImgBeh.OnPlayerEnter();
 			}
 		}
 

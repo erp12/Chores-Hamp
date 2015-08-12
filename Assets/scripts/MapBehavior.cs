@@ -37,8 +37,8 @@ public class MapBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		grid.cellSize = new Vector2 (tileSize, tileSize);
-		numCols = (int)(myRT.sizeDelta.x / tileSize);
-		numRows = (int)(myRT.sizeDelta.y / tileSize);
+		numCols = (int)((Screen.width * 0.7f) / tileSize);
+		numRows = (int)((Screen.height) / tileSize);
 
 		map = new GameObject[numRows,numCols];
 
@@ -51,6 +51,7 @@ public class MapBehavior : MonoBehaviour {
 	}
 
 	public void DrawMap() {
+		print (numCols + " :: " + numRows);
 		for (int r = 0; r < numRows; r++) {
 			for (int c = 0; c < numCols; c++) {
 				GameObject tile = Instantiate(emptyTile) as GameObject;
